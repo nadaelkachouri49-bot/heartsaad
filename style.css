@@ -1,0 +1,111 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, #121a24 0%, #070a0f 60%, #05070b 100%);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+.scene {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.wrap {
+  width: min(78vmin, 520px);
+}
+
+.heartSvg {
+  width: 100%;
+  height: auto;
+}
+
+/* Ombre au sol */
+.shadowFloor {
+  fill: rgba(0,0,0,0.35);
+  filter: blur(2px);
+  transform-origin: 260px 452px;
+  opacity: 0.85;
+  animation: shadowPulse 1.2s ease-in-out infinite;
+  animation-delay: 1.9s;
+}
+
+/* Groupe cœur (pour le battement) */
+.heart {
+  transform-origin: 260px 285px;
+  animation: beat 1.2s ease-in-out infinite;
+  animation-delay: 1.9s;
+}
+
+/* Remplissage apparaît après le tracé */
+.fill {
+  fill: url(#heartGrad);
+  opacity: 0;
+  animation: appear 0.55s ease forwards;
+  animation-delay: 1.45s;
+}
+
+/* Brillant */
+.shine {
+  fill: url(#shine);
+  opacity: 0;
+  transform: translate(-12px, -18px);
+  animation: shineIn 0.65s ease forwards;
+  animation-delay: 1.55s;
+}
+
+/* Contour qui se dessine */
+.stroke {
+  fill: none;
+  stroke: rgba(255,255,255,0.95);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: draw 1.6s ease forwards;
+}
+
+/* Texte au centre (simple, fiable) */
+.txt {
+  fill: rgba(255,255,255,0.95);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  transform-origin: 260px 305px;
+  animation: textIn 0.85s ease forwards;
+  animation-delay: 1.85s;
+}
+
+/* Animations */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes appear { to { opacity: 1; } }
+
+@keyframes shineIn {
+  from { opacity: 0; }
+  to { opacity: 0.55; }
+}
+
+@keyframes beat {
+  0%   { transform: scale(1); }
+  12%  { transform: scale(1.06); }
+  24%  { transform: scale(0.98); }
+  40%  { transform: scale(1.03); }
+  55%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shadowPulse {
+  0%   { transform: scale(1); opacity: 0.85; }
+  20%  { transform: scale(0.94); opacity: 0.65; }
+  55%  { transform: scale(1.03); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+
+@keyframes textIn {
+  0%   { opacity: 0; transform: translateY(10px) scale(0.98); }
+  70%  { opacity: 1; transform: translateY(-2px) scale(1.03); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
