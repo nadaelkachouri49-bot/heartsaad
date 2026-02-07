@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cœur Saad</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="scene">
+    <div class="wrap">
+      <svg class="heartSvg" viewBox="0 0 520 520" aria-label="coeur">
+        <defs>
+          <!-- Forme du cœur -->
+          <path id="heartPath"
+            d="M260 430
+               C 160 360, 95 285, 110 210
+               C 125 140, 200 125, 260 180
+               C 320 125, 395 140, 410 210
+               C 425 285, 360 360, 260 430 Z" />
+
+          <!-- Dégradé (réaliste) -->
+          <radialGradient id="heartGrad" cx="35%" cy="28%" r="75%">
+            <stop offset="0%"  stop-color="#ffb3bf"/>
+            <stop offset="35%" stop-color="#ff3f67"/>
+            <stop offset="70%" stop-color="#b70f35"/>
+            <stop offset="100%" stop-color="#6a041d"/>
+          </radialGradient>
+
+          <!-- Petit brillant -->
+          <radialGradient id="shine" cx="32%" cy="25%" r="45%">
+            <stop offset="0%"  stop-color="rgba(255,255,255,0.75)"/>
+            <stop offset="45%" stop-color="rgba(255,255,255,0.18)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </radialGradient>
+
+          <!-- Ombre -->
+          <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="18" stdDeviation="14" flood-color="rgba(0,0,0,0.55)"/>
+          </filter>
+
+          <!-- Clip pour garder le texte dans le cœur -->
+          <clipPath id="clipHeart">
+            <use href="#heartPath"></use>
+          </clipPath>
+        </defs>
+
+        <!-- Ombre au sol -->
+        <ellipse class="shadowFloor" cx="260" cy="452" rx="145" ry="34"/>
+
+        <!-- Coeur -->
+        <g class="heart" filter="url(#shadow)">
+          <!-- Remplissage -->
+          <use class="fill" href="#heartPath"></use>
+
+          <!-- Brillant -->
+          <use class="shine" href="#heartPath"></use>
+
+          <!-- Contour qui se dessine -->
+          <use class="stroke" href="#heartPath"></use>
+
+          <!-- Texte -->
+          <g clip-path="url(#clipHeart)">
+            <text class="txt" x="260" y="305" text-anchor="middle">
+              I love you Saad
+            </text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </main>
+</body>
+</html>
